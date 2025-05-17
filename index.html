@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aidan Chen - Developer Portfolio</title>
+    <style>
+        /* Import fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            color: #38bdf8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+        
+        a:hover {
+            color: #0ea5e9;
+            text-decoration: underline;
+        }
+        
+        /* Container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Header section */
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 3rem 0;
+            border-bottom: 1px solid #334155;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.03) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.03) 0%, transparent 30%);
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .header-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        /* Animated pyramid */
+        .pyramid-container {
+            margin: 2rem 0;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .pyramid {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(45deg) rotateY(45deg);
+            animation: rotate 12s infinite linear;
+        }
+        
+        @keyframes rotate {
+            100% {
+                transform: rotateX(45deg) rotateY(405deg);
+            }
+        }
+        
+        .pyramid-face {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 104px solid rgba(56, 189, 248, 0.3);
+        }
+        
+        .pyramid-face:nth-child(1) {
+            transform: rotateY(0deg) translateY(-35px) rotateX(30deg);
+            border-bottom-color: rgba(115, 115, 0, 0.3);
+        }
+        
+        .pyramid-face:nth-child(2) {
+            transform: rotateY(90deg) translateY(-35px) rotateX(30deg);
+            border-bottom-color: rgba(20, 90, 225, 0.3);
+        }
+        
+        .pyramid-face:nth-child(3) {
+            transform: rotateY(180deg) translateY(-35px) rotateX(30deg);
+            border-bottom-color: rgba(255, 0, 0, 0.3);
+        }
+        
+        .pyramid-face:nth-child(4) {
+            transform: rotateY(270deg) translateY(-35px) rotateX(30deg);
+            border-bottom-color: rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Main content section */
+        .main-content {
+            padding: 3rem 0;
+        }
+        
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Projects section */
+        .projects-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #38bdf8;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            height: 2px;
+            width: 100px;
+            background: linear-gradient(90deg, #38bdf8, transparent);
+        }
+        
+        .project-list {
+            list-style-type: none;
+        }
+        
+        .project-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1rem;
+        }
+        
+        .project-item:last-child {
+            border-bottom: none;
+        }
+        
+        .project-tag {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* Stats section */
+        .stats-section {
+            background-color: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .stats-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .stats-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: rgba(15, 23, 42, 0.7);
+            border-top: 1px solid #334155;
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .project-item {
+                padding: 0.5rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pyramid-container {
+                height: 150px;
+            }
+            
+            .pyramid {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .pyramid-face {
+                border-left: 40px solid transparent;
+                border-right: 40px solid transparent;
+                border-bottom: 69px solid rgba(56, 189, 248, 0.3);
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP6VH7FY77"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MP6VH7FY77');
+    </script>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Aidan Chen</h1>
+                <div class="pyramid-container">
+                    <div class="pyramid">
+                        <div class="pyramid-face"></div>
+                        <div class="pyramid-face"></div>
+                        <div class="pyramid-face"></div>
+                        <div class="pyramid-face"></div>
+                    </div>
+                </div>
+                <h3 class="header-subtitle">
+                    <a href="https://github.com/Polycarbohydrate">Polycarbohydrate</a> is a passionate person that improves documentation on github repositories as well as contribute to them for a hobby.
+                </h3>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- About Section -->
+            <section class="about-section">
+                <div class="about-text">
+                    <p>
+                        He also likes creating his own projects using <a href="https://www.rust-lang.org/">Rust.</a> He explorers the world of open source and contributes to many projects and repositories.
+                    </p>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Look for some of his work &amp; contributions on <a href="https://github.com/Polycarbohydrate">Github</a> or look below.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <h2 class="section-title">Projects</h2>
+                <ul class="project-list">
+                    <li class="project-item">
+                        <span class="project-tag">Project</span>
+                        <a href="https://github.com/Polycarbohydrate/awesome-tor">Awesome-Tor - An awesome list all about Tor (The Onion Router). An official Awesome List.</a>
+                    </li>
+                    <hr>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/basic-graph-data-structure">Basic-Graph-Data_Structure - Script that allows a user to create a connected data structure and visualize the output. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/contacts">Contacts - Simple script that enables a user to input contact names and phone numbers. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/employee-department-tracker">Employee-Department-Tracker - Allows a user to add employees to any department and ability to sort the employees and departments by alphabetical order. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/Fibonacci-generator">Fibonacci-generator - Script that prints the Fibonacci sequence indefinitely and allows users to input for the nth term. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/file_reader">File-reader - A script that allows a user to input a file path and read the contents within the file. Only works on text in UTF-8 encoded files. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/number-set-computations">Number-set-computations - A script that helps to find the mean, median, mode, and range of a given number set. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/pi-calculator-random">Pi-calculator-random - Calculates pi using the Monte Carlo method. 5 threads with MPSC. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/pig-latin-converter">Pig-latin-converter - Script to simply convert a string of text to pig latin. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/simple-calculator">Simple-calculator - Simple calculator that does addition, subtraction, multiplication, and division using enums and match arms in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/simple-quiz-game">Simple quiz game - A very simple three question quiz game written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/single-book-library">Single-book-library - This script is meant to simulate a simple library system by letting users create a book, checkout and return a book, all in a simple CLI. Written in rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/str-manipulation">Str-manipulator - A simple script that manipulates strings. It can concatenate 5 strings, give the length of a string, and split a string into 2 parts. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/Task-Planner">Task-Planner - A minimalistic, command-line-interface, task manger that allows any user to create tasks and manage them.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/Temperature-Converter">Temperature-converter - A simple script is used to convert between Celsius and Fahrenheit units for temperature. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/text_word_stats">Text-word-stats - Simple program that gets text through stdin() and prints out the word count of each word. Written in Rust.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/The-12-Days-Of-Rust">The-12-Days-Of-Rust - Lyrics of the song "The Twelve Days of Christmas" by "The Wiggles" written in Rust taking advantage of the repetition in the song.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Script</span>
+                        <a href="https://github.com/Polycarbohydrate/weather_dashboard">Weather-Dashboard - Get the weather from a set of coordinates. Written in Rust.</a>
+                    </li>
+                    <hr>
+
+                    <!-- Contributions Section -->
+                    <h2 class="section-title">Contributions</h2>
+                    <li class="project-item">
+                        <span class="project-tag">Contribution</span>
+                        <span class="project-tag">37,000,000+ users</span>
+                        <a href="https://github.com/uBlockOrigin/uAssets">uAssets - Resources for uBlock Origin, uMatrix: static filter lists, ready-to-use rulesets, etc...</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Contribution</span>
+                        <span class="project-tag">900,000+ users</span>
+                        <a href="https://github.com/anticensority/runet-censorship-bypass">runet-censorship-bypass - Chromium extension for bypassing censorship in Russia.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Contribution</span>
+                        <span class="project-tag">1,000+ users</span>
+                        <a href="https://github.com/NRLMMD-GEOIPS/geoips">geoips - Main Geolocated Information Processing System code base with basic functionality enabled.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Contribution</span>
+                        <span class="project-tag">53,000+ stars</span>
+                        <a href="https://github.com/rust-lang/rustlings">Rustlings - 🦀 Small exercises to get you used to reading and writing Rust code!</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Contribution</span>
+                        <span class="project-tag">28,400+ stars</span>
+                        <a href="https://github.com/trailofbits/algo">algo - Set up a personal VPN in the cloud.</a>
+                    </li>
+                    <li class="project-item">
+                        <span class="project-tag">Contribution</span>
+                        <span class="project-tag">145+ stars</span>
+                        <a href="https://github.com/nfriedly/nodeunblocker.com">nodeunblocker - Evade internet censorship!</a>
+                    </li>
+                    <hr>
+                    
+                    <!-- Featured Section -->
+                    <h2 class="section-title">Featured</h2>
+                    <li class="project-item">
+                        <span class="project-tag">Social Media</span>
+                        <a href="https://x.com/awesome__re/status/1815722217134563455">Awesome-Tor announcement.</a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <h3 class="stats-title">My Stats</h3>
+                <div class="stats-container">
+                    <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=polycarbohydrate&theme=vue-dark&show_icons=true&hide_border=true&count_private=false" alt="polycarbohydrate's GitHub Stats">
+                    <img class="stats-img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=polycarbohydrate&theme=vue-dark&show_icons=true&hide_border=true&layout=compact" alt="Top Languages">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">Thank you for visiting this page! Have a wonderful day! ❤️</p>
+        </div>
+    </footer>
+</body>
+</html>
